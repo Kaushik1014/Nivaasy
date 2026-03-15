@@ -7,9 +7,8 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-const { listingSchema } = require("./schema.js");
+const { listingSchema, reviewSchema } = require("./schema.js");
 const Review = require("./models/review.js");
-const { reviewSchema } = require("./schema.js");
 const listings = require("./routes/listing.js");
 
 main()
@@ -31,15 +30,6 @@ app.get("/" ,(req, res)=>{
     res.send("Hi, I am root");
 });
 
-const validateListing = (req, res, next)=>{ 
-    let {error} = listingSchema.validate(req.body);
-    if (error) {
-        let errMsg = error.details.map(el => el.message).join(",");
-        throw new ExpressError(errMsg, 400);
-    }else{
-        next();
-    }
-};
 
 const validateReview = (req, res, next)=>{
     let {error} = reviewSchema.validate(req.body); 
