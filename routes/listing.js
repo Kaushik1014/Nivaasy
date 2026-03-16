@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
-const { listingSchema, reviewSchema } = require("../schema.js");
+const { listingSchema } = require("../schema.js");
 const ExpressError = require("../utils/ExpressError.js");
 const Listing = require("../models/listing.js");
 
@@ -35,11 +35,14 @@ router.get("/:id", wrapAsync(async (req, res, next) => {
 }));
 
 //create route
-router.post("/",validateListing, wrapAsync(async(req, res, next)=>{
-    const newListing = new Listing(req.body.listing); 
-    await newListing.save();
-    res.redirect("/listings");
-})) ;
+router.post("/", validateListing, wrapAsync(async (req, res) => {
+  if(!req.body.listing.image.url){
+    delete req.body.listing.image;
+  }
+  const newListing = new Listing(req.body.listing);
+  await newListing.save();
+  res.redirect("/listings");
+}));
 
 //Edit route
 router.get("/:id/edit",wrapAsync(async(req, res, next)=>{
@@ -49,10 +52,10 @@ router.get("/:id/edit",wrapAsync(async(req, res, next)=>{
 }))
 
 //update route
-router.put("/:id" , validateListing, wrapAsync(async(req, res, next)=>{
-    let { id } = req.params;
-    await Listing.findByIdAndUpdate(id ,{...req.body.listing});
-    res.redirect(`/listings/${ id }`);
+router.put("/:id",validateListing, wrapAsync(async (req, res) => {
+    req.body.listing.image.filename = "listingimage";
+    await Listing.findByIdAndUpdate(req.params.id, req.body.listing);
+    res.redirect(`/listings/${req.params.id}`);
 }));
 
 //delete route
