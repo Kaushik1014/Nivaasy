@@ -6,6 +6,15 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const reviewRouter = require("./routes/review.js");
+const session = require("express-session");
+
+const sessionOptions = {
+    secret:"mysupersecret",
+    resave: false,
+    saveUninitialized: true, 
+};
+
+app.use(session(sessionOptions));
 
 const listings = require("./routes/listing.js");
 const review = require("./models/review.js");
