@@ -5,7 +5,7 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
-const Review = require("./routes/review.js");
+
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
@@ -13,7 +13,7 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
 const listingRouter = require("./routes/listing.js");
-const reviewRouter = require("./models/review.js");
+const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 main()
@@ -59,6 +59,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next)=>{
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.currentUser = req.user;
     next();
 });
 
