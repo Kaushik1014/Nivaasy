@@ -6,10 +6,10 @@ const { isLoggedIn, isOwner,validateListing } = require("../middleware.js");
 
 
 //index route
-router.get("/", async (req, res)=>{
+router.get("/", wrapAsync(async (req, res)=>{
     const allListings = await Listing.find({});
     res.render("listings/index.ejs", { allListings });
-});
+}));
 
 //new route
 router.get("/new" ,isLoggedIn, (req, res)=>{
