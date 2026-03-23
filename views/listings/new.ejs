@@ -31,10 +31,33 @@
         </div>
         <div class="mb-3"> 
             <label for="location" class="form-label">Location</label>
-            <input name="listing[location]" placeholder="Mumbai, Maharashtra" type="text" class="form-control" required>
+            <input id="location-input" name="listing[location]" placeholder="Mumbai, Maharashtra" type="text" class="form-control" autocomplete="off" required>
                 <div class="invalid-feedback">Location is required!</div>
+            <input type="hidden" id="lat-input" name="listing[lat]">
+            <input type="hidden" id="lng-input" name="listing[lng]">
+            <div id="location-suggestions" class="list-group mt-2"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Pick exact location on map</label>
+            <div id="listing-map" class="listing-map"></div>
+            <small class="text-muted">Click the map to set coordinates, or use location search.</small>
         </div>
         <button class="btn btn-dark add-btn mt-3">Add</button>
     </form>
     </div>
 </div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="/js/listingMap.js"></script>
+<script>
+    window.ListingMap.initFormMap({
+        mapId: "listing-map",
+        locationInputId: "location-input",
+        suggestionsId: "location-suggestions",
+        latInputId: "lat-input",
+        lngInputId: "lng-input",
+        apiKey: "<%= geoapifyApiKey %>",
+        initialCenter: [28.6139, 77.209]
+    });
+</script>

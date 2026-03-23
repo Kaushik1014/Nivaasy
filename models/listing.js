@@ -18,13 +18,24 @@ const listingSchema = new Schema({
   price: Number,
   location: String,
   country: String,
+  geometry: {
+    type: {
+      type: String,
+      enum: ["Point"],
+      default: "Point",
+    },
+    coordinates: {
+      type: [Number],
+      default: [77.209, 28.6139], // [lng, lat] fallback (New Delhi)
+    },
+  },
   reviews: [
     {
       type: Schema.Types.ObjectId,
       ref: "Review",
     },
   ],
-  owner: {
+  owner :{
     type: Schema.Types.ObjectId,
     ref: "User",
   }
@@ -32,7 +43,7 @@ const listingSchema = new Schema({
 
 listingSchema.post("findOneAndDelete", async function (listing) {
   if (listing) {
-    await Review.deleteMany({ _id: { $in: listing.reviews } });
+   await Review.deleteMany({ _id: { $in: listing.reviews } });
   }
 });
 
