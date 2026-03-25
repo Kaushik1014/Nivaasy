@@ -46,9 +46,9 @@ const sessionOptions = {
     }
 };
 
-// app.get("/" ,(req, res)=>{
-//     res.send("Hi, I am root");
-// });
+app.get("/" ,(req, res)=>{
+    res.send("Hi, I am root");
+});
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -64,7 +64,6 @@ app.use((req, res, next)=>{
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.currentUser = req.user;
-    res.locals.geoapifyApiKey = process.env.GEOAPIFY_API_KEY || "";
     next();
 });
 
