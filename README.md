@@ -138,7 +138,7 @@ The app will be running at **http://localhost:8080** 🎉
 
 ## 🌐 Live Demo
 
-> **🔗 Live Link:** [_Add your deployed URL here_](#)
+> **🔗 Live Link:** [https://nivaasy.onrender.com/listings](#)
 
 <!-- ✅ Replace the link above once deployed (e.g., Render, Railway, Vercel, etc.) -->
 
