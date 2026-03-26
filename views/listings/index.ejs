@@ -1,18 +1,39 @@
 <% layout("/layouts/boilerplate") %>
 
 <style>
+  .filters-wrapper{
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 0.5rem;
+  }
   #filters{
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    flex: 1;
+    min-width: 0;
+  }
+  #filters::-webkit-scrollbar{
+    height: 4px;
+  }
+  #filters::-webkit-scrollbar-thumb{
+    background: #ddd;
+    border-radius: 4px;
   }
   .filter{
     text-align: center;
     margin-right: 2rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     opacity: 0.7;
+    text-decoration: none;
+    color: inherit;
+    flex-shrink: 0;
   }
-  .filter:hover{
+  .filter:hover,
+  .filter.active{
     opacity: 1;
     cursor: pointer;
   }
@@ -30,48 +51,108 @@
     border-radius: 1rem;
     height: 3.5rem;
     padding: 1rem;
-    margin-left: auto;
     display: flex;
     align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: -15px;
+  }
+  .no-listings{
+    text-align: center;
+    margin-top: 3rem;
+    color: #888;
+  }
+  .no-listings i{
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 768px) {
+    .filter{
+      margin-right: 1.2rem;
+    }
+    .filter p{
+      font-size: 0.7rem;
+    }
+    .tax-toggle{
+      height: auto;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.75rem;
+    }
+    .card-img-top{
+      height: 14rem !important;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .filters-wrapper{
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .tax-toggle{
+      justify-content: center;
+      margin-top: 0;
+    }
+    .filter{
+      margin-right: 1rem;
+    }
+    .card-img-top{
+      height: 12rem !important;
+    }
+    .no-listings h4{
+      font-size: 1.1rem;
+    }
   }
 </style>
 
-    <div id="filters">
-      <div class="filter">
-        <div><i class="fa-solid fa-fire"></i></div>
-        <p>Trending</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-bed"></i></div>
-        <p>Rooms</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-mountain-city"></i></div>
-        <p>Iconic cities</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-mountain"></i></div>
-        <p>Mountains</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-brands fa-fort-awesome"></i></div>
-        <p>Casles</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-person-swimming"></i></div>
-        <p>Amazing pools</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-campground"></i></div>
-        <p>Campings</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-cow"></i></div>
-        <p>Farms</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-regular fa-snowflake"></i></div>
-        <p>Arctic</p>
+    <div class="filters-wrapper">
+      <div id="filters">
+        <a href="/listings" class="filter <%= activeCategory === '' ? 'active' : '' %>">
+          <div><i class="fa-solid fa-border-all"></i></div>
+          <p>All</p>
+        </a>
+        <a href="/listings?category=trending" class="filter <%= activeCategory === 'trending' ? 'active' : '' %>">
+          <div><i class="fa-solid fa-fire"></i></div>
+          <p>Trending</p>
+        </a>
+        <a href="/listings?category=rooms" class="filter <%= activeCategory === 'rooms' ? 'active' : '' %>">
+          <div><i class="fa-solid fa-bed"></i></div>
+          <p>Rooms</p>
+        </a>
+        <a href="/listings?category=iconic_cities" class="filter <%= activeCategory === 'iconic_cities' ? 'active' : '' %>">
+          <div><i class="fa-solid fa-mountain-city"></i></div>
+          <p>Iconic cities</p>
+        </a>
+        <a href="/listings?category=mountains" class="filter <%= activeCategory === 'mountains' ? 'active' : '' %>">
+          <div><i class="fa-solid fa-mountain"></i></div>
+          <p>Mountains</p>
+        </a>
+        <a href="/listings?category=castles" class="filter <%= activeCategory === 'castles' ? 'active' : '' %>">
+          <div><i class="fa-brands fa-fort-awesome"></i></div>
+          <p>Castles</p>
+        </a>
+        <a href="/listings?category=pools" class="filter <%= activeCategory === 'pools' ? 'active' : '' %>">
+          <div><i class="fa-solid fa-person-swimming"></i></div>
+          <p>Amazing pools</p>
+        </a>
+        <a href="/listings?category=camping" class="filter <%= activeCategory === 'camping' ? 'active' : '' %>">
+          <div><i class="fa-solid fa-campground"></i></div>
+          <p>Campings</p>
+        </a>
+        <a href="/listings?category=farms" class="filter <%= activeCategory === 'farms' ? 'active' : '' %>">
+          <div><i class="fa-solid fa-cow"></i></div>
+          <p>Farms</p>
+        </a>
+        <a href="/listings?category=artic" class="filter <%= activeCategory === 'artic' ? 'active' : '' %>">
+          <div><i class="fa-regular fa-snowflake"></i></div>
+          <p>Arctic</p>
+        </a>
+        <a href="/listings?category=deserts" class="filter <%= activeCategory === 'deserts' ? 'active' : '' %>">
+          <div><i class="fa-solid fa-sun"></i></div>
+          <p>Deserts</p>
+        </a>
       </div>
       <div class="tax-toggle">
         <div class="form-check-reverse form-switch">
@@ -80,6 +161,15 @@
         </div>
       </div>
     </div>
+
+  <% if (allListings.length === 0) { %>
+    <div class="no-listings">
+      <i class="fa-solid fa-house-circle-xmark"></i>
+      <h4>No listings available</h4>
+      <p>Try a different search or filter.</p>
+      <a href="/listings" class="btn btn-outline-dark mt-2">View all listings</a>
+    </div>
+  <% } else { %>
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
     <% for(let listing of allListings){ %>
       <a href="/listings/<%= listing._id %>" class="listing-link">
@@ -99,6 +189,7 @@
       </a>
       <% } %>
   </div>
+  <% } %>
 
   <script>
     let taxSwitch = document.getElementById("switchCheckDefault");

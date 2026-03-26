@@ -49,6 +49,22 @@
             <div id="listing-map" class="listing-map"></div>
             <small class="text-muted">Click the map to update coordinates, or use location search.</small>
         </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select name="listing[category]" id="category" class="form-select" required>
+                <option value="trending" <%= listing.category === 'trending' ? 'selected' : '' %>>Trending</option>
+                <option value="rooms" <%= listing.category === 'rooms' ? 'selected' : '' %>>Rooms</option>
+                <option value="iconic_cities" <%= listing.category === 'iconic_cities' ? 'selected' : '' %>>Iconic Cities</option>
+                <option value="mountains" <%= listing.category === 'mountains' ? 'selected' : '' %>>Mountains</option>
+                <option value="castles" <%= listing.category === 'castles' ? 'selected' : '' %>>Castles</option>
+                <option value="pools" <%= listing.category === 'pools' ? 'selected' : '' %>>Amazing Pools</option>
+                <option value="camping" <%= listing.category === 'camping' ? 'selected' : '' %>>Camping</option>
+                <option value="farms" <%= listing.category === 'farms' ? 'selected' : '' %>>Farms</option>
+                <option value="artic" <%= listing.category === 'artic' ? 'selected' : '' %>>Arctic</option>
+                <option value="deserts" <%= listing.category === 'deserts' ? 'selected' : '' %>>Deserts</option>
+            </select>
+            <div class="invalid-feedback">Category is required!</div>
+        </div>
         <button class="btn btn-dark edit-btn mt-3">Edit</button>
     </form>
     </div>
@@ -64,7 +80,7 @@
         suggestionsId: "location-suggestions",
         latInputId: "lat-input",
         lngInputId: "lng-input",
-        apiKey: "<%= geoapifyApiKey %>",
+        apiKey: "<%= typeof geoapifyApiKey !== 'undefined' ? geoapifyApiKey : '' %>",
         initialCenter: [<%= listing.geometry?.coordinates?.[1] || 28.6139 %>, <%= listing.geometry?.coordinates?.[0] || 77.209 %>]
     });
 </script>

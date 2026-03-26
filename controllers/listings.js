@@ -26,8 +26,24 @@ const parseCoordinatesFromBody = (listingBody = {}) => {
 };
 
 module.exports.index = async (req, res)=>{
-    const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings });
+    const { q, category } = req.query;
+    let filter = {};
+
+    if (q) {
+      const regex = new RegExp(q, "i");
+      filter.$or = [
+        { title: regex },
+        { location: regex },
+        { country: regex },
+      ];
+    }
+
+    if (category) {
+      filter.category = category;
+    }
+
+    const allListings = await Listing.find(filter);
+    res.render("listings/index.ejs", { allListings, searchQuery: q || "", activeCategory: category || "" });
 };
 
 module.exports.renderNewListing =  (req, res)=>{

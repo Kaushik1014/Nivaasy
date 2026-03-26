@@ -34,6 +34,23 @@
             <input name="listing[location]" placeholder="Mumbai, Maharashtra" type="text" class="form-control" required>
                 <div class="invalid-feedback">Location is required!</div>
         </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select name="listing[category]" id="category" class="form-select" required>
+                <option value="" disabled selected>Select a category</option>
+                <option value="trending">Trending</option>
+                <option value="rooms">Rooms</option>
+                <option value="iconic_cities">Iconic Cities</option>
+                <option value="mountains">Mountains</option>
+                <option value="castles">Castles</option>
+                <option value="pools">Amazing Pools</option>
+                <option value="camping">Camping</option>
+                <option value="farms">Farms</option>
+                <option value="artic">Arctic</option>
+                <option value="deserts">Deserts</option>
+            </select>
+            <div class="invalid-feedback">Category is required!</div>
+        </div>
         <button class="btn btn-dark add-btn mt-3">Add</button>
     </form>
     </div>

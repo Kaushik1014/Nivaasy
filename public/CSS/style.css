@@ -124,3 +124,64 @@ body{
     background-color: #fe424d !important;
     border: none !important;
 }
+
+/* ========== Responsive ========== */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .navbar{
+        height: auto;
+        padding: 0.5rem 0;
+    }
+    .search-inp{
+        padding: 0.5rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    .show-img{
+        height: 25vh;
+    }
+    .listing-map{
+        height: 280px;
+    }
+    .f-info{
+        height: auto;
+        padding: 1rem 0;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .navbar .container-fluid{
+        flex-wrap: wrap;
+    }
+    .search-inp{
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+    }
+    .search-btn{
+        padding: 0.3rem 0.75rem;
+        font-size: 0.85rem;
+    }
+    .show-img{
+        height: 20vh;
+    }
+    .listing-map{
+        height: 220px;
+    }
+    .btns{
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .btns .btn{
+        width: 100%;
+    }
+    .f-info{
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+    .listing-card{
+        margin-bottom: 1.5rem;
+    }
+}
