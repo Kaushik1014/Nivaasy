@@ -144,15 +144,6 @@ The app will be running at **http://localhost:8080** 🎉
 
 ---
 
-## 📸 Screenshots
-
-<!-- Add screenshots of your app here -->
-<!-- Example: ![Home Page](screenshots/home.png) -->
-
-_Screenshots coming soon..._
-
----
-
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
