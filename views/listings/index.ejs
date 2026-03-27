@@ -167,7 +167,9 @@
       <i class="fa-solid fa-house-circle-xmark"></i>
       <h4>No listings available</h4>
       <p>Try a different search or filter.</p>
-      <a href="/listings" class="btn btn-outline-dark mt-2">View all listings</a>
+      <% if (activeCategory || searchQuery) { %>
+        <a href="/listings" class="btn btn-outline-dark mt-2">View all listings</a>
+      <% } %>
     </div>
   <% } else { %>
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
