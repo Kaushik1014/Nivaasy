@@ -113,6 +113,19 @@ module.exports.updateListing = async (req, res) => {
     res.redirect(`/listings/${id}`);
 };
 
+module.exports.searchSuggestions = async (req, res) => {
+    const { q } = req.query;
+    if (!q || q.trim().length < 2) {
+        return res.json([]);
+    }
+    const regex = new RegExp(q.trim(), "i");
+    const suggestions = await Listing.find(
+        { $or: [{ title: regex }, { location: regex }, { country: regex }] },
+        { title: 1, location: 1, country: 1 }
+    ).limit(8);
+    res.json(suggestions);
+};
+
 module.exports.deleteListing = async(req,res, next)=>{
     let { id } = req.params;
     let deleteListing = await Listing.findByIdAndDelete(id);

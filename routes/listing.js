@@ -17,6 +17,9 @@ router
 //new route
 router.get("/new", isLoggedIn, listingsController.renderNewListing);
 
+//search suggestions API
+router.get("/search/suggestions", wrapAsync(listingsController.searchSuggestions));
+
 //show, update and delete route
 router
     .route("/:id")
