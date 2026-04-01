@@ -1,6 +1,6 @@
 # 🏠 Nivaasy — Vacation Rental Marketplace
 
-> **Live Demo:** [🔗 https://nivaasy.onrender.com/listings](#)  
+> **Live Demo:** 🔗[https://nivaasy.onrender.com/listings](#)  
 <!-- Replace the # above with your deployed URL when available -->
 
 Nivaasy is a full-stack vacation rental platform inspired by Airbnb, where users can discover, list, and review unique stays around the world. Built with **Node.js**, **Express**, and **MongoDB**.
