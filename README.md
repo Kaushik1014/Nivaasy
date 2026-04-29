@@ -11,7 +11,7 @@ Nivaasy is a full-stack vacation rental platform inspired by Airbnb, where users
 
 | Feature | Description |
 |---------|-------------|
-| 🔐 **Authentication** | Sign up, log in & log out with Passport.js (local strategy) |
+| 🔐 **Authentication** | Sign up, log in & log out with Passport.js |
 | 🏡 **Listings CRUD** | Create, read, update & delete property listings |
 | ⭐ **Reviews** | Authenticated users can leave 1–5 star reviews with comments |
 | 🗺️ **Interactive Maps** | Geocoded listing locations displayed via Leaflet + OpenStreetMap |
